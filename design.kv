@@ -1,0 +1,337 @@
+<LoginScreen>:
+    GridLayout:
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)
+                        
+            Rectangle:  
+                size: root.size  
+                pos: root.pos 
+        
+        cols:1
+        padding: 15,15
+        spacing: 20,20
+        GridLayout:
+            canvas:  
+                Color:
+                    rgba:(35/225, 47/225, 52/225,1)
+                Rectangle:  
+                    size: self.size  
+                    pos: self.pos 
+            cols:1
+            padding:15,15
+            spacing:20,20
+
+            Label:
+                color:255/255,119/255,0/255,1
+                font_size:'30sp'
+                text:"Believe in \nYourself..."  
+                    #"Believe\n in\nYourself"
+            TextInput:
+                id:username
+                multiline:False
+				focus:True
+                size_hint:0.3,0.5
+                hint_text:"Username"
+            
+            TextInput:
+                id:password
+                multiline:False
+                focus:True
+                password:True
+                size_hint:0.3,0.5
+                hint_text:"Password"
+            
+            RelativeLayout:
+                Button:
+                    background_color:35/225, 47/225, 52/225,1
+                    size_hint:0.4,0.5
+                    font_size:'25sp'
+                    pos_hint:{'center_x':0.5,'center_y':0.6}
+                    color:255/255,119/255,0/255,1
+                    text:"Login"
+                    on_press:root.login(root.ids.username.text,root.ids.password.text)
+            
+            Label:
+                color:249/255, 170/255, 51/255,1
+                
+                id:login_wrong
+                text: ""
+        
+        GridLayout:
+            canvas:  
+                Color:
+                    rgba:(35/225, 47/225, 52/225,1)
+                Rectangle:  
+                    size: self.size  
+                    pos: self.pos
+            cols:2
+            size_hint:0.2,0.3
+            padding:10,10
+            spacing: 15,0
+            
+            RelativeLayout:
+                Button:
+                    background_color:35/225, 47/225, 52/225,0
+                    color:255/255,119/255,0/255,1
+                    font_size:'15sp'
+                    text:"Forgot Password"
+                    pos_hint:{'center_x':0.4,'center_y':0.3}
+                    opacity:1 if self.state=='normal' else 0.5
+                    on_press:root.forgot_pass()
+            RelativeLayout:        
+                Button:
+                    background_color:35/225, 47/225, 52/225,0
+                    color:255/255,119/255,0/255,1
+                    font_size:'15sp'
+                    text:"Sign Up"
+                    pos_hint:{'center_x':0.7,'center_y':0.3}
+                    opacity:1 if self.state=='normal' else 0.5
+                    on_press:root.signup()
+
+
+<SignUpScreen>:
+    GridLayout:
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)
+            Rectangle:  
+                size: self.size  
+                pos: self.pos
+        cols:1
+        padding: 15,15
+        spacing: 20,20
+        
+        Label:
+            color:255/255,119/255,0/255,1
+            font_size:'35sp'
+            text:"Sign Up"
+        
+        TextInput:
+            id:username
+            size_hint:0.3,0.4
+            multiline:False
+            focus:True
+            hint_text:"Username"
+        
+        TextInput:
+            id:password
+            size_hint:0.3,0.4
+            multiline:False
+            focus:True
+            #password:True
+            hint_text:"Password"
+        
+        RelativeLayout:
+            Button:
+                background_color:35/225, 47/225, 52/225,1
+                size_hint:0.4,0.5
+                font_size:'25sp'
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                opacity:1 if self.state=='normal' else 0.5
+                color:255/255,119/255,0/255,1
+                text:"Submit"
+                on_press:root.add_user(root.ids.username.text, root.ids.password.text)
+
+        Label:
+            id:detailsrequired
+            color:249/255, 170/255, 51/255,1
+            text:""
+        
+        RelativeLayout:
+            Button:
+                size_hint:0.3,0.2
+                font_size:'15sp'
+                background_color:1,1,1,0
+                pos_hint:{'center_x':0.1,'center_y':0.3}
+                opacity:1 if self.state=='normal' else 0.5
+                color:255/255,119/255,0/255,1
+                text:"Back"
+                on_press:root.login()
+
+               
+
+
+
+<SignUpSuccessScreen>:
+    GridLayout:
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)
+                        
+            Rectangle:  
+                size: root.size  
+                pos: root.pos  
+        padding: 15,15
+        spacing: 20,20
+        cols:1
+        Label:
+            text:"Sign-Up \nSuccessfull"
+            color:255/255,119/255,0/255,1
+            font_size:'35sp'
+        
+        RelativeLayout:
+            Button:
+                background_color:35/225, 47/225, 52/225,1
+                size_hint:0.3,0.2
+                color:255/255,119/255,0/255,1
+                font_size:'25sp'
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                opacity:1 if self.state=='normal' else 0.5
+                text:"Login"
+                on_press:root.go_to_login()
+
+
+<ForgotPasswordScreen>:
+    GridLayout:
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)            
+            Rectangle:  
+                size: root.size  
+                pos: root.pos  
+        padding: 15,15
+        spacing: 15,15
+        cols:1
+        Label:
+            font_size:'35sp'
+            color:255/255,119/255,0/255,1
+            text:"Forgot Password"
+        
+        TextInput:
+            id:uname
+            size_hint:0.3,0.4
+            multiline:False
+            hint_text:"Enter your username"
+        
+        TextInput:
+            id:newpass
+            size_hint:0.3,0.4
+            multiline:False
+            hint_text:"Enter new Password"
+        
+        TextInput:
+            id:cpass
+            size_hint:0.3,0.4
+            multiline:False
+            hint_text:"Enter confirm Password"
+        
+        Label:
+            color:249/255, 170/255, 51/255,1
+            id:username_wrong
+            text: ""
+
+        RelativeLayout:
+            Button:
+                background_color:35/225, 47/225, 52/225,1
+                size_hint:0.4,0.5
+                font_size:'25sp'
+                color:255/255,119/255,0/255,1
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                opacity:1 if self.state=='normal' else 0.5
+                text:"Submit"
+                on_press:root.passchange(root.ids.uname.text,root.ids.newpass.text,root.ids.cpass.text)
+       
+        RelativeLayout:
+            Button:
+                font_size:'15sp'
+                background_color:1,1,1,0
+                color:255/255,119/255,0/255,1
+                pos_hint:{'center_x':0.1,'center_y':0.3}
+                opacity:1 if self.state=='normal' else 0.5
+                text:"Back"
+                on_press:root.login()
+                
+<PasswordChangeScreen>:
+    GridLayout:
+        padding:20,20
+        spacing:20,20
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)            
+            Rectangle:  
+                size: root.size  
+                pos: root.pos  
+        cols:1
+        Label:
+            text:"Password Changed"
+            font_size:'25sp'
+            color:255/255,119/255,0/255,1
+        
+        RelativeLayout:
+            Button:
+                background_color:35/225, 47/225, 52/225,1
+                size_hint:0.4,0.2
+                font_size:'20sp'
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                opacity:1 if self.state=='normal' else 0.5
+                color:255/255,119/255,0/255,1
+                text:"Login Again"
+                on_press:root.login()
+
+<SuccessLoginScreen>:
+    GridLayout:
+        canvas:  
+            Color:
+                rgba:(35/225, 47/225, 52/225,1)            
+            Rectangle:  
+                size: root.size  
+                pos: root.pos  
+        padding: 30,30
+        spacing: 30,30
+        cols:1
+        
+        RelativeLayout:
+            ImageButton:
+                source:'logout_hover.png' if self.hovered else "logout_nothover.png"
+                size_hint:0.35,0.35
+                pos_hint:{'center_x':0.93,'center_y':0.8}
+                on_press: root.logout(root.ids.feeling.text)
+                
+        Label:
+            color:255/255,119/255,0/255,1
+            font_size:'28sp'
+            text:"How do you Feel?"
+            
+        
+        ScrollView:
+            Label:
+                id:quote
+                text: ""
+                text_size:self.width, None
+                size_hint_y:None
+                height:self.texture_size[1]
+        
+        TextInput:
+            id: feeling
+            multiline:False
+            focus:True
+            size_hint:0.3,0.4
+            hint_text:" Things to Try: happy, sad, unloved etc."
+        
+        RelativeLayout:
+            Button:
+                size_hint:0.5,0.5
+                background_color:35/225, 47/225, 52/225,1
+                font_size:'25sp'
+                pos_hint:{'center_x':0.5,'center_y':0.6}
+                opacity:1 if self.state=='normal' else 0.5
+                color:255/255,119/255,0/255,1
+                text: "Enlignten Me"
+                on_press: root.get_quote(root.ids.feeling.text)
+                
+        
+        
+<RootWidget>:
+    LoginScreen:
+        name:"login_screen"
+    SignUpScreen:
+        name:"sign_up_screen"
+    ForgotPasswordScreen:
+        name:"forgot_pass_screen"
+    SignUpSuccessScreen:
+        name:"signup_success_screen"
+    SuccessLoginScreen:
+        name:"success_login_screen"
+    PasswordChangeScreen:
+        name:"pass_change_screen"
